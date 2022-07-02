@@ -9,10 +9,11 @@ os.chdir("Desktop")
 df = pd.read_csv("NBA22 Per Game Team Stats.csv")
 
 #prints the DataFrame
+print("Here are the stats for the 2021-22 season:\n")
 print(df)
 
 #Creates a scatterplot with Defensive Rebounds on the x-axis and Wins on the y-axis. The x and y can be changed to preference.
-x = 'DRB'
+x = input("What would you like to predict wins with? ")
 y = 'WINS'
 plt.xlabel(x)
 plt.ylabel(y)
@@ -20,13 +21,17 @@ plt.scatter(df[x], df[y], color = 'red', marker = '+')
 
 #Creates a linear regression model
 reg = linear_model.LinearRegression()
-reg.fit(df[[x]].values, df[[y]].values)
+reg.fit(df[[x]].values, df[y].values)
 
 #predicts the number of wins based on defensive rebounds taken as input
-reb = float(input("How many defensive rebounds per game does your team get? "))
+reb = float(input("What is the average {} per game? ".format(x)))
 prediction = reg.predict([[reb]])
-print("The predicted wins for {} rebounds is ".format(int(reb)) + str(int(round(prediction[0]))))
+print("The predicted wins for {} {} is ".format(int(reb), x) + str(int(round(prediction[0]))))
 
 #plots the scatterplot with the linear model
 plt.plot(df[x], reg.predict(df[[x]].values), color = 'blue')
 plt.show() 
+
+
+
+
