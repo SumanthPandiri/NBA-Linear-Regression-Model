@@ -31,7 +31,3 @@ print("The predicted wins for {} {} is ".format(int(reb), x) + str(int(round(pre
 #plots the scatterplot with the linear model
 plt.plot(df[x], reg.predict(df[[x]].values), color = 'blue')
 plt.show() 
-
-
-
-
