@@ -21,9 +21,11 @@ plt.scatter(df[x], df[y], color = 'red', marker = '+')
 reg = linear_model.LinearRegression()
 reg.fit(df[[x]].values, df[[y]].values)
 
-#Predicts the wins for a team with 36 rebounds
-print("The predicted wins for 36 rebounds is " + str(reg.predict([[36.0]])))
+#
+reb = float(input("How many defensive rebounds per game does your team get? "))
+prediction = reg.predict([[reb]])
+print("The predicted wins for {} rebounds is ".format(int(reb)) + str(int(round(prediction[0]))))
 
-#plots the scatterplot with the linear model
-plt.plot(df[x], reg.predict(df[[x]]), color = 'blue')
-plt.show()
+#predicts the number of wins based on defensive rebounds taken as input
+plt.plot(df[x], reg.predict(df[[x]].values), color = 'blue')
+plt.show() 
