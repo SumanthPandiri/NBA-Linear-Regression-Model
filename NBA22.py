@@ -26,6 +26,8 @@ reg.fit(df[[x]].values, df[y].values)
 #predicts the number of wins based on defensive rebounds taken as input
 reb = float(input("What is the average {} per game? ".format(x)))
 prediction = reg.predict([[reb]])
+if prediction[0] > 82:
+    prediction[0] = 82
 print("The predicted wins for {} {} is ".format(int(reb), x) + str(int(round(prediction[0]))))
 
 #plots the scatterplot with the linear model
